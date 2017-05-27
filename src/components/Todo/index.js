@@ -1,12 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Task from '../Task';
+import DeleteTodo from '../DeleteTodo';
+import CreateTask from '../CreateTasks';
 
-const Todo = ({ data, tasks }) => (
+const Todo = ({ data, tasks, remove, create, removetask }) => (
   <li>
-    <h4>{data.name}</h4>
+    <h4>
+      {data.name}
+      <DeleteTodo cle={data.id} remove={remove} />
+    </h4>
     <ul>
-      {tasks.map(task => <Task key={task.id} data={task} />)}
+      <CreateTask create={create} cle={data.id} />
+      {tasks.map(task => (
+        <Task key={task.id} remove={removetask} data={task} />
+      ))}
     </ul>
   </li>
 );
@@ -14,6 +22,7 @@ const Todo = ({ data, tasks }) => (
 Todo.propTypes = {
   data: PropTypes.object.isRequired,
   tasks: PropTypes.array.isRequired,
+  remove: PropTypes.func.isRequired,
 };
 
 export default Todo;

@@ -7,9 +7,14 @@ import CreateTodo from './components/CreateTodo';
 
 const App = ({ todos, tasks, actions }) => (
   <div className="App">
-    {console.log(actions)}
     <CreateTodo create={actions.todos.create} />
-    <TodoList todos={todos} tasks={tasks} />
+    <TodoList
+      todos={todos}
+      tasks={tasks}
+      remove={actions.todos.remove}
+      create={actions.tasks.create}
+      removetask={actions.tasks.remove}
+    />
   </div>
 );
 
